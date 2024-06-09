@@ -73,6 +73,7 @@ web_modules/
 .yarn-integrity
 
 # dotenv environment variable files
+/.env
 .env
 .env.development.local
 .env.test.local
@@ -128,3 +129,29 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# api以下
+# Ignore bundler config.
+api/.bundle
+
+# gem packgeを回避
+api/vendor
+
+# Ignore all logfiles and tempfiles.
+api/log/*
+api/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# Ignore pidfiles, but keep the directory.
+api/tmp/pids/*
+!/tmp/pids/
+!/tmp/pids/.keep
+
+# Ignore uploaded files in development.
+api/storage/*
+!/storage/.keep
+api/.byebug_history
+
+# Ignore master key for decrypting credentials and more.
+api/config/master.key
