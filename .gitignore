@@ -155,3 +155,6 @@ api/.byebug_history
 
 # Ignore master key for decrypting credentials and more.
 api/config/master.key
+
+# ローカル設定
+.ruby-version
