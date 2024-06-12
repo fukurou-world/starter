@@ -53,3 +53,4 @@ coconuts-poker::DATABASE=> \q
 - [Rails基礎コマンド（rails g）](https://zenn.dev/sasan0/articles/7d0d9c5a2f1edb)
 - [Ruby on Railsで始めるWeb API実装](https://zenn.dev/sasan0/articles/7d0d9c5a2f1edb)
 - [Railsのroutingにおけるscope / namespace / module の違い](https://qiita.com/ryosuketter/items/9240d8c2561b5989f049)
+- [rswagを使ったテストファーストなAPI開発のフローを確認する](https://qiita.com/nakazawaken1/items/1cf12756a9e00f1a8fc4)
