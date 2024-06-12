@@ -1,4 +1,4 @@
-class SkillsController < ApplicationController
+class Api::V1::SkillsController < ApplicationController
   def register
     skill = Skill.new(skill_params)
     if skill.save

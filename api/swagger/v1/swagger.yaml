@@ -1,0 +1,25 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/skills/index":
+    get:
+      summary: get skill list
+      responses:
+        '200':
+          description: skill list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                  required:
+                  - name
+servers:
+- url: http://localhost:3000
