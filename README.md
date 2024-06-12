@@ -1,5 +1,6 @@
 # starter
 土台となるプロジェクト
+[(Docker+Rails6+Nuxt.js+PostgreSQL)=>Heroku 環境構築~デプロイまでの手順書](https://blog.cloud-acct.com/posts/u-docker-rails-nuxtjs-heroku/#4.nuxt.js%E3%82%92heroku%E3%81%AB%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4)
 
 ## Docker
 - macの場合
