@@ -27,3 +27,5 @@
 /config/master.key
 
 .ruby-version
+.ash_history
+.irb_history

@@ -133,6 +133,9 @@ dist
 # api以下
 # Ignore bundler config.
 api/.bundle
+api/.ash_history
+api/.irb_history
+api/.ruby-version
 
 # gem packgeを回避
 api/vendor
