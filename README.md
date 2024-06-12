@@ -52,3 +52,4 @@ coconuts-poker::DATABASE=> \q
 ## Rails
 - [Rails基礎コマンド（rails g）](https://zenn.dev/sasan0/articles/7d0d9c5a2f1edb)
 - [Ruby on Railsで始めるWeb API実装](https://zenn.dev/sasan0/articles/7d0d9c5a2f1edb)
+- [Railsのroutingにおけるscope / namespace / module の違い](https://qiita.com/ryosuketter/items/9240d8c2561b5989f049)
