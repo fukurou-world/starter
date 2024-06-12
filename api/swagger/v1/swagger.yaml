@@ -4,22 +4,81 @@ info:
   title: API V1
   version: v1
 paths:
+  "/api/v1/skills/register":
+    post:
+      summary: Creates a skill
+      tags:
+      - Skills
+      parameters: []
+      responses:
+        '201':
+          description: skill created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
   "/api/v1/skills/index":
     get:
-      summary: get skill list
+      summary: Retrieves all skills
+      tags:
+      - Skills
       responses:
         '200':
-          description: skill list
+          description: skills found
           content:
             application/json:
               schema:
                 type: array
-                items:
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                  required:
-                  - name
+                items: {}
+  "/api/v1/skills/update/{id}":
+    put:
+      summary: Updates a skill
+      tags:
+      - Skills
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: skill updated
+        '404':
+          description: skill not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+  "/api/v1/skills/delete/{id}":
+    delete:
+      summary: Deletes a skill
+      tags:
+      - Skills
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: skill deleted
+        '404':
+          description: skill not found
 servers:
 - url: http://localhost:3000
