@@ -48,3 +48,7 @@ coconuts-poker::DATABASE=> show timezone;
 
 coconuts-poker::DATABASE=> \q
 ```
+
+## Rails基礎コマンド（rails g [xxx]）
+- https://zenn.dev/sasan0/articles/7d0d9c5a2f1edb
+https://zenn.dev/sasan0/articles/7d0d9c5a2f1edb
