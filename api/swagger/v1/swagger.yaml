@@ -4,6 +4,82 @@ info:
   title: API V1
   version: v1
 paths:
+  "/api/v1/areas/register":
+    post:
+      summary: Creates a area
+      tags:
+      - Areas
+      parameters: []
+      responses:
+        '201':
+          description: area created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+  "/api/v1/areas/index":
+    get:
+      summary: Retrieves all areas
+      tags:
+      - Areas
+      responses:
+        '200':
+          description: areas found
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+  "/api/v1/areas/update/{id}":
+    put:
+      summary: Updates a area
+      tags:
+      - Areas
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: area updated
+        '404':
+          description: area not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+  "/api/v1/areas/delete/{id}":
+    delete:
+      summary: Deletes a area
+      tags:
+      - Areas
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: area deleted
+        '404':
+          description: area not found
   "/api/v1/skills/register":
     post:
       summary: Creates a skill

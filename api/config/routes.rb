@@ -9,6 +9,10 @@ Rails.application.routes.draw do
       put 'skills/update/:id', to: 'skills#update'
       delete 'skills/delete/:id', to: 'skills#delete'
       resources :hello, only:[:index]
+      post 'areas/register', to: 'areas#register'
+      get 'areas/index', to: 'areas#index'
+      put 'areas/update/:id', to: 'areas#update'
+      delete 'areas/delete/:id', to: 'areas#delete'
     end
   end
 end
