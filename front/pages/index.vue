@@ -13,7 +13,7 @@ export default {
   },
   methods: {
     getMsg () {
-      this.$axios.$get('/api/v1/hello')
+      this.$axios.$get('/hello')
         .then(res => this.msgs.push(res))
     }
   }
