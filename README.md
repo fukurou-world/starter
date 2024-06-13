@@ -57,6 +57,8 @@ coconuts-poker::DATABASE=> \q
 - [Railsのroutingにおけるscope / namespace / module の違い](https://qiita.com/ryosuketter/items/9240d8c2561b5989f049)
 - [rswagを使ったテストファーストなAPI開発のフローを確認する](https://qiita.com/nakazawaken1/items/1cf12756a9e00f1a8fc4)
 - [Railsにおける命名規則](https://qiita.com/gakkie/items/3afcd505c786364aa5fa)
+- [【Rails API 入門】devise-token-auth](https://qiita.com/tomokazu0112/items/5fdd6a51a84c520c45b5)
+  - ログイン周りの実装
 
 ## swagger
 - swagger生成コマンド（Railsのdockerコンテナ内で実行する）
