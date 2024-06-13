@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   mount_devise_token_auth_for 'Dealer', at: 'auth'
+
+  mount_devise_token_auth_for 'Client', at: 'auth'
+  as :client do
+    # Define routes for Client within this block.
+  end
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
