@@ -1,0 +1,2 @@
+class EvaluationDealer < ApplicationRecord
+end

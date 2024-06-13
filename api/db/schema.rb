@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_06_13_063514) do
+ActiveRecord::Schema.define(version: 2024_06_13_064356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,6 +130,49 @@ ActiveRecord::Schema.define(version: 2024_06_13_063514) do
     t.index ["uid", "provider"], name: "index_dealers_on_uid_and_provider", unique: true
   end
 
+  create_table "evaluation_clients", force: :cascade do |t|
+    t.bigint "dealer_id"
+    t.bigint "client_id"
+    t.string "content"
+    t.integer "rate"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["client_id"], name: "index_evaluation_clients_on_client_id"
+    t.index ["dealer_id"], name: "index_evaluation_clients_on_dealer_id"
+  end
+
+  create_table "evaluation_dealers", force: :cascade do |t|
+    t.bigint "dealer_id"
+    t.bigint "client_id"
+    t.string "content"
+    t.integer "rate"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["client_id"], name: "index_evaluation_dealers_on_client_id"
+    t.index ["dealer_id"], name: "index_evaluation_dealers_on_dealer_id"
+  end
+
+  create_table "recruits", force: :cascade do |t|
+    t.string "title", null: false
+    t.datetime "deadline"
+    t.datetime "startAt"
+    t.datetime "endAt"
+    t.bigint "client_id"
+    t.bigint "area_id"
+    t.integer "fee_min"
+    t.integer "fee_max"
+    t.boolean "is_night_fee", default: false
+    t.boolean "is_transportation_fee", default: false
+    t.boolean "is_uniform"
+    t.string "notices_uniform"
+    t.string "job_description"
+    t.string "notices"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["area_id"], name: "index_recruits_on_area_id"
+    t.index ["client_id"], name: "index_recruits_on_client_id"
+  end
+
   create_table "skills", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -145,4 +188,8 @@ ActiveRecord::Schema.define(version: 2024_06_13_063514) do
   add_foreign_key "dealer_areas", "dealers"
   add_foreign_key "dealer_skills", "dealers"
   add_foreign_key "dealer_skills", "skills"
+  add_foreign_key "evaluation_clients", "clients"
+  add_foreign_key "evaluation_clients", "dealers"
+  add_foreign_key "recruits", "areas"
+  add_foreign_key "recruits", "clients"
 end
