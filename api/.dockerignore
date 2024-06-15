@@ -1,0 +1,7 @@
+.git
+.gitignore
+.ruby-version
+.irb_history
+.ash_history
+README.md
+heroku.yml
