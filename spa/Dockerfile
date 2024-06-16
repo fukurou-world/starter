@@ -7,3 +7,11 @@ RUN apk update \
     && apk add \
     git \
     vim
+
+COPY package*.json ./
+RUN yarn install
+
+COPY . .
+
+RUN yarn run build
+RUN yarn run generate
