@@ -12,6 +12,7 @@ div
   let msgs = ref(['a', 'b'])
   
   async function getMsg () {
+  // const { data: response } = await useFetch('https://coconuts-poker-87d283940a6e.herokuapp.com/api/v1/skills/index')
   const { data: response } = await useFetch('http://localhost:3000/api/v1/skills/index')
     console.log('%c response :', 'background-color:lightgray', response)
   const { data: res2 } = await useFetch('/api/v1/skills/index')
