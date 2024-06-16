@@ -48,8 +48,21 @@ class Api::V1::SkillsController < ApplicationController
     end
   end
 
+  def search
+    body_data = params[:name]
+    print '----!---'
+    print body_data
+    print params
+    print '-------'
+    skill = Skill.where("name LIKE ?", "%#{body_data}%")
+    print '<<skill>>'
+    print skill
+    print '<<skill>>'
+    render json: { skills: skill }, status: 200
+  end
+
   private
   def skill_params
-    params.require(:skill).permit(:name)
+    # params.require(:skill).permit(:name)
   end
 end

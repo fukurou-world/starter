@@ -37,6 +37,30 @@ RSpec.describe 'Skills API', type: :request do
     end
   end
 
+  path '/api/v1/skills/search' do
+    post 'Searc a skill' do
+      tags 'Skills'
+      consumes 'application/json'
+      parameter name: :skill, in: :body, schema: {
+        type: :object,
+        properties: {
+          name: { type: :string }
+        },
+        required: ['name']
+      }
+
+      response '201', 'skill found' do
+        let(:skill) { { name: 'Ruby' } }
+        run_test!
+      end
+
+      response '422', 'invalid request' do
+        let(:skill) { { name: '' } }
+        run_test!
+      end
+    end
+  end
+
   path '/api/v1/skills/update/{id}' do
     put 'Updates a skill' do
       tags 'Skills'

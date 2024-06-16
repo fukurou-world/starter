@@ -114,6 +114,27 @@ paths:
               schema:
                 type: array
                 items: {}
+  "/api/v1/skills/search":
+    post:
+      summary: Searc a skill
+      tags:
+      - Skills
+      parameters: []
+      responses:
+        '201':
+          description: skill found
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
   "/api/v1/skills/update/{id}":
     put:
       summary: Updates a skill
@@ -158,6 +179,3 @@ paths:
           description: skill not found
 servers:
 - url: http://localhost:3000
-  description: '開発環境'
-- url: https://coconuts-poker-87d283940a6e.herokuapp.com
-  description: '検証環境'
