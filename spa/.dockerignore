@@ -1,4 +1,7 @@
 *.md
 heroku.yml
-nodemodules
+node_modules
 .git
+npm-debug.log
+yarn-error.log
+dist

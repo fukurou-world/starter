@@ -3,13 +3,15 @@ ENV TZ Asia/Tokyo
 
 WORKDIR /app
 
+ENV PATH="/app/node_modules/.bin:$PATH"
+
 RUN apk update \
     && apk add \
     git \
     vim
 
 COPY package*.json ./
-RUN yarn install
+RUN yarn install --frozen-lockfile
 
 COPY . .
 
