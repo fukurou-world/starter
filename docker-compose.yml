@@ -45,18 +45,3 @@ services:
     command: sh -c "yarn && yarn dev"
 volumes:
   nuxt_node_modules:
-
-  # front:
-  #   build:
-  #     context: ./front
-  #     args:
-  #       WORKDIR: $WORKDIR
-  #       CONTAINER_PORT: $CONTAINER_PORT
-  #       API_URL: "http://localhost:$API_PORT/api/v1"
-  #   command: yarn run dev
-  #   volumes:
-  #     - ./front:/$WORKDIR
-  #   ports:
-  #     - "$FRONT_PORT:$CONTAINER_PORT"
-  #   depends_on:
-  #     - api
