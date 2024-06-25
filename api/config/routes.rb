@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  mount_devise_token_auth_for 'Dealer', at: 'auth'
+  # ログイン機能のルーティング
+  mount_devise_token_auth_for 'Dealer', at: 'auth', controllers: {
+    registrations: 'auth/registrations'
+  }
+    # ログインユーザー取得のルーティング
+    namespace :auth do
+      resources :sessions, only: %i[index]
+    end
 
   mount_devise_token_auth_for 'Client', at: 'auth'
   as :client do

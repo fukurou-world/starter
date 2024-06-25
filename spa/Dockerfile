@@ -4,6 +4,7 @@ ENV TZ Asia/Tokyo
 WORKDIR /app
 
 ENV PATH="/app/node_modules/.bin:$PATH"
+# ENV BASE_URL="https://samplecoomm.coma" ここでAPI base URLを渡す
 
 RUN apk update \
     && apk add \

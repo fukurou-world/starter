@@ -1,7 +1,8 @@
 <template lang="pug">
 div
   button(type="button" name="button" @click="getMsg") RailsからAPIを取得する
-  div(v-for="(msg, i) in msgs" :key="i") {{ msg }}
+  div msgs: {{ msgs }}
+  div(v-for="(msg, i) in msgs" :key="i") {{ i }} 番目 -> {{ msg }}
   span {{ hoge }}
 </template>
   
@@ -12,16 +13,10 @@ div
   let msgs = ref(['a', 'b'])
   
   async function getMsg () {
-  // const { data: response } = await useFetch('https://coconuts-poker-87d283940a6e.herokuapp.com/api/v1/skills/index')
-  const { data: response } = await useFetch('http://localhost:3000/api/v1/skills/index')
-    console.log('%c response :', 'background-color:lightgray', response)
-  const { data: res2 } = await useFetch('/api/v1/skills/index')
-    console.log('%c res2 :', 'background-color:lightgray', res2)
-  const { data: res3 }= await useFetch('/skills/index')
-    console.log('%c res3 :', 'background-color:lightgray', res3)
-    msgs.value = ['sss']
+  const res = await useApiFetch($fetch, '/api/v1/skills/index')
+  console.log('%c res :', 'background-color:lightgreen', res)
+  msgs.value = res.skills
+    console.log('%c msgs.value.length :', 'background-color:lightgreen', msgs.value.length)
     hoge.value++
-    console.log(msgs)
-    console.log(hoge)
     }
   </script>

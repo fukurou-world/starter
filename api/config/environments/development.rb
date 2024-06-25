@@ -53,4 +53,19 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::FileUpdateChecker
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+    # 下記を追加
+    config.action_mailer.default_options = { from: ENV['EMAIL_ADDRESS'] }
+    # 以下2行は上にあるのでコメントアウト
+    # hostにはデフォルトでlocalhost3000になっているので、Railsのポート番号である3001に変更する。
+    # config.action_mailer.default_url_options = { host: 'localhost:3001' }
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address: 'smtp.gmail.com',
+      port: 587,
+      domain: 'gmail.com',
+      user_name: ENV['EMAIL_ADDRESS'],
+      password: ENV['EMAIL_PASSWORD'],
+      authentication: 'plain',
+      enable_starttls_auto: true
+    }
 end
