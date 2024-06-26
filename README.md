@@ -61,6 +61,7 @@ coconuts-poker::DATABASE=> \q
   - ログイン周りの実装
 
 ## swagger
-- swagger生成コマンド（Railsのdockerコンテナ内で実行する）
+- swagger.yml を直接編集してドキュメントとします
+- 【廃止】swagger生成コマンド（Railsのdockerコンテナ内で実行する）
   - `RAILS_ENV=test rake rswag:specs:swaggerize`
 

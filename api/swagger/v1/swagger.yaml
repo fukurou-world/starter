@@ -160,6 +160,122 @@ paths:
               schema:
                 type: array
                 items: {}
+  "/api/v1/dealers/{id}":
+    get:
+      summary: Retrieves single dealer
+      tags:
+      - Dealers
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: dealers found
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+  "/api/v1/dealers/search":
+    post:
+      summary: Searc a dealer
+      tags:
+      - Dealers
+      parameters: []
+      responses:
+        '201':
+          description: dealer found
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                work in progress:
+                  type: string
+              required:
+              - name
+  "/api/v1/dealers/update":
+    put:
+      summary: Updates a dealer
+      tags:
+      - Dealers
+      responses:
+        '200':
+          description: dealer updated
+        '404':
+          description: dealer not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: '123'
+                avatar:
+                  type: string
+                  example: 'https://s3.somewhere.com/hgioad'
+                name:
+                  type: string
+                  example: '卓山投矢'
+                gender:
+                  type: string
+                  example: '01'
+                # email:
+                #   type: string
+                  # example: '123'
+                # encrypted_password:
+                #   type: string
+                  # example: '123'
+                tel:
+                  type: string
+                  example: '03011223344'
+                dealer_name:
+                  type: string
+                  example: 'To-ya'
+                url_x:
+                  type: string
+                  example: 'https://x.com/to-ya-ya-!'
+                years_of_experience:
+                  type: number
+                  example: 5
+                fee_min:
+                  type: number
+                  example: 1200
+                fee_max:
+                  type: number
+                  example: 2200
+                payment_account:
+                  type: string
+                  example: 'みずほ銀行山岡支店（普通）012340123 タクヤマトウヤ'
+                notices:
+                  type: string
+                  example: 'お酒のアレルギーがあります。'
+              required:
+              - dealer_name
+  "/api/v1/dealers/delete/{id}":
+    delete:
+      summary: Deletes a dealer
+      tags:
+      - Dealers
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: dealer deleted
+        '404':
+          description: dealer not found
   "/api/v1/skills/register":
     post:
       summary: Creates a skill

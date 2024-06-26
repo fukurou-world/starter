@@ -17,6 +17,10 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :api do
     namespace :v1 do
+      post 'dealers/search', to: 'dealers#search'
+      get 'dealers/:id', to: 'dealers#detail'
+      put 'dealers/update', to: 'dealers#update'
+      delete 'dealers/delete/:id', to: 'dealers#delete'
       post 'skills/register', to: 'skills#register'
       get 'skills/index', to: 'skills#index'
       post 'skills/search', to: 'skills#search'
