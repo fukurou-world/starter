@@ -10,13 +10,14 @@
    `null: false`や`reference`など
 6. `api/config/routes.rb` のルーティング情報を更新
    get, post, put, deleteとコントローラへのリダイレクトを書く
-8. rspecのファイルを作成&記述する（`api/spec/requests`）
+7. swagger.yml を編集してSwaggerUIからAPIリクエストのテストをできるようにする
+9. 【廃止】rspecのファイルを作成&記述する（`api/spec/requests`）
    ※swaggerのため。テストの中身は考慮していない
 
 ### コマンド実行
 1. テーブル作成（migration）
    `rails db:migrate`
-2. swagger.yml生成
+2. 【廃止】swagger.yml生成
    `RAILS_ENV=test rake rswag:specs:swaggerize`
    ※先にmigrationしないとswagger生成に失敗する
    ※Warningやfailedが出るが、examples に数字が出ていればファイル生成には成功
