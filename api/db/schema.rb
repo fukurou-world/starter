@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_02_154356) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_03_094540) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -36,6 +36,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_02_154356) do
     t.datetime "updated_at", null: false
     t.index ["area_id"], name: "index_client_areas_on_area_id"
     t.index ["client_id"], name: "index_client_areas_on_client_id"
+  end
+
+  create_table "client_schedules", force: :cascade do |t|
+    t.bigint "client_id", null: false, comment: "クライアントID"
+    t.date "asking_date", comment: "依頼日付"
+    t.string "asking_time_start", comment: "依頼開始時刻"
+    t.string "asking_time_end", comment: "依頼終了時刻"
+    t.string "notices", comment: "特記事項"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_client_schedules_on_client_id"
   end
 
   create_table "client_skills", force: :cascade do |t|
@@ -83,6 +94,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_02_154356) do
     t.index ["dealer_id"], name: "index_dealer_areas_on_dealer_id"
   end
 
+  create_table "dealer_schedules", force: :cascade do |t|
+    t.bigint "dealer_id", null: false, comment: "ディーラーID"
+    t.date "vacant_date", comment: "空き日付"
+    t.string "vacant_time_start", comment: "空き開始時刻"
+    t.string "vacant_time_end", comment: "空き終了時刻"
+    t.string "notices", comment: "特記事項"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dealer_id"], name: "index_dealer_schedules_on_dealer_id"
+  end
+
   create_table "dealer_skills", force: :cascade do |t|
     t.bigint "dealer_id", null: false
     t.bigint "skill_id", null: false
@@ -101,7 +123,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_02_154356) do
     t.string "tel"
     t.string "dealer_name"
     t.string "url_x"
-    t.integer "years_of_experience"
     t.integer "fee_min"
     t.integer "fee_max"
     t.string "payment_account"
@@ -109,6 +130,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_02_154356) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
+    t.date "date_of_becoming"
     t.index ["dealer_name"], name: "index_dealers_on_dealer_name", unique: true
     t.index ["email"], name: "index_dealers_on_email", unique: true
     t.index ["tel"], name: "index_dealers_on_tel", unique: true
@@ -166,11 +188,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_02_154356) do
   add_foreign_key "askings", "clients"
   add_foreign_key "client_areas", "areas"
   add_foreign_key "client_areas", "clients"
+  add_foreign_key "client_schedules", "clients"
   add_foreign_key "client_skills", "clients"
   add_foreign_key "client_skills", "skills"
   add_foreign_key "clients", "areas"
   add_foreign_key "dealer_areas", "areas"
   add_foreign_key "dealer_areas", "dealers"
+  add_foreign_key "dealer_schedules", "dealers"
   add_foreign_key "dealer_skills", "dealers"
   add_foreign_key "dealer_skills", "skills"
   add_foreign_key "evaluation_clients", "clients"

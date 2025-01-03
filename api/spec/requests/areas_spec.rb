@@ -17,17 +17,11 @@ RSpec.describe 'Areas API', type: :request do
       describe '正常終了テスト' do
         response '201', 'Created' do
           let(:area) { { name: 'area_test' } }
-          schema type: :object,
-          properties: {
-            area: {
-              type: :object,
-              properties: {
-                id: { type: :integer, example: 1 },
-                name: { type: :string, example: 'area_test' },
-                created_at: { type: :string, example: '2030-03-01 20:45:22' },
-                updated_at: { type: :string, example: '2030-03-01 20:45:22' }
-              }
-            }
+          schema type: :object, properties: {
+            id: { type: :integer, example: 1 },
+            name: { type: :string, example: 'area_test' },
+            created_at: { type: :string, example: '2030-03-01 20:45:22' },
+            updated_at: { type: :string, example: '2030-03-01 20:45:22' }
           }
           run_test!
         end
@@ -57,18 +51,13 @@ RSpec.describe 'Areas API', type: :request do
             create_list(:area, 2) # Create 2 area records for the test
           end
 
-          schema type: :object, properties: {
-            areas: {
-              type: :array,
-              items: {
-                type: :object,
-                properties: {
-                  id: { type: :integer, example: 1 },
-                  name: { type: :string, example: 'area_test' },
-                  created_at: { type: :string, example: '2030-03-01 20:45:22' },
-                  updated_at: { type: :string, example: '2030-03-01 20:45:22' }
-                }
-              }
+          schema type: :array, items: {
+            type: :object,
+            properties: {
+              id: { type: :integer, example: 1 },
+              name: { type: :string, example: 'area_test' },
+              created_at: { type: :string, example: '2030-03-01 20:45:22' },
+              updated_at: { type: :string, example: '2030-03-01 20:45:22' }
             }
           }
           run_test!
@@ -115,7 +104,7 @@ RSpec.describe 'Areas API', type: :request do
             }
           run_test! do |response|
             data = JSON.parse(response.body)
-            expect(data['area']['name']).to eq('Updated Name')
+            expect(data['name']).to eq('Updated Name')
           end
         end
       end

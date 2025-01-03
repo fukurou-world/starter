@@ -18,21 +18,18 @@ paths:
               schema:
                 type: object
                 properties:
-                  area:
-                    type: object
-                    properties:
-                      id:
-                        type: integer
-                        example: 1
-                      name:
-                        type: string
-                        example: area_test
-                      created_at:
-                        type: string
-                        example: '2030-03-01 20:45:22'
-                      updated_at:
-                        type: string
-                        example: '2030-03-01 20:45:22'
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: area_test
+                  created_at:
+                    type: string
+                    example: '2030-03-01 20:45:22'
+                  updated_at:
+                    type: string
+                    example: '2030-03-01 20:45:22'
         '422':
           description: Invalid Request
           content:
@@ -65,25 +62,22 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  areas:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                          example: 1
-                        name:
-                          type: string
-                          example: area_test
-                        created_at:
-                          type: string
-                          example: '2030-03-01 20:45:22'
-                        updated_at:
-                          type: string
-                          example: '2030-03-01 20:45:22'
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    name:
+                      type: string
+                      example: area_test
+                    created_at:
+                      type: string
+                      example: '2030-03-01 20:45:22'
+                    updated_at:
+                      type: string
+                      example: '2030-03-01 20:45:22'
         '404':
           description: Not Found
           content:
