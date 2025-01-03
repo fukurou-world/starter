@@ -1,4 +1,7 @@
-手順サンプルはこちら→[Rails開発手順サンプル](https://github.com/fukurou-world/starter/blob/main/DEVPROCESS.md)
+- 手順サンプルはこちら
+→[Rails開発手順サンプル](https://github.com/fukurou-world/starter/blob/main/DEVPROCESS.md)
+- 開発環境の実行はこちら
+→[開発環境でのプロジェクト起動](https://github.com/fukurou-world/matching/blob/main/TESTPROCESS.md)
 
 # starter
 土台となるプロジェクト

@@ -1,55 +1,61 @@
 class Api::V1::AreasController < ApplicationController
-  def register
+  def create
     area = Area.new(area_params)
-    if area.save
+    if !area.blank? && !area['name'].blank? && area.save
       render json: { area: area }, status: 201
     else
-      render status: 400
+      render json: { error: 'Invalid Request' }, status: 422
     end
   end
 
   def index
-    areas = Area.all
-    if areas.empty?
-      render status: 400
+    @areas = Area.all
+    if @areas.empty?
+      render json: { error: 'Not Found' }, status: 404
     else
-      render json: { areas: areas }, status: 200
+      render :index, format: 'json', handler: 'jbuilder'
     end
   end
 
   def update
-    area = Area.find_by(id: params[:id])
+    id = params[:id]
+    if id.nil?
+      render json: { error: 'Bad Request' }, status: 400 and return
+    end
+
+    area = Area.find(id)
     if area.nil?
-      area = Area.new(area_params)
-      if area.save
-        render json: { area: area }, status: 201
-      else
-        render status: 400
-      end
+      render json: { error: 'Not Found' }, status: 404
     else
       if area.update(area_params)
         render json: { area: area }, status: 200
       else
-        render status: 400
+        render json: { error: 'Bad Request' }, status: 400
       end
     end
   end
 
   def delete
-    area = Area.find_by(id: params[:id])
+    id = params[:id]
+    if id.nil?
+      render json: { error: 'Bad Request' }, status: 400 and return
+    end
+
+    area = Area.find(id)
     if area.nil?
-      render status: 400
+      render json: { error: 'Not Found' }, status: 404
     else
       if area.destroy
-        render status: 204
+        # 204のため、実際は空
+        render json: { id: id }, status: 204
       else
-        render status: 400
+        render json: { error: 'Bad Request' }, status: 400
       end
     end
   end
 
   private
   def area_params
-    params.require(:area).permit(:name)
+    params.permit(:name)
   end
 end

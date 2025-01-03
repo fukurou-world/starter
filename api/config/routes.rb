@@ -1,36 +1,27 @@
 Rails.application.routes.draw do
-  # ログイン機能のルーティング
-  mount_devise_token_auth_for 'Dealer', at: 'auth', controllers: {
-    registrations: 'auth/registrations'
-  }
-    # ログインユーザー取得のルーティング
-    namespace :auth do
-      resources :sessions, only: %i[index]
-    end
-
-  mount_devise_token_auth_for 'Client', at: 'auth'
-  as :client do
-    # Define routes for Client within this block.
-  end
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :api do
     namespace :v1 do
+      post 'clients/search', to: 'clients#search'
+      get 'clients/:id', to: 'clients#detail'
+      put 'clients/update', to: 'clients#update'
+      delete 'clients/delete', to: 'clients#delete'
       post 'dealers/search', to: 'dealers#search'
       get 'dealers/:id', to: 'dealers#detail'
       put 'dealers/update', to: 'dealers#update'
-      delete 'dealers/delete/:id', to: 'dealers#delete'
-      post 'skills/register', to: 'skills#register'
+      delete 'dealers/delete', to: 'dealers#delete'
+      post 'skills/create', to: 'skills#create'
       get 'skills/index', to: 'skills#index'
       post 'skills/search', to: 'skills#search'
-      put 'skills/update/:id', to: 'skills#update'
-      delete 'skills/delete/:id', to: 'skills#delete'
+      put 'skills/update', to: 'skills#update'
+      delete 'skills/delete', to: 'skills#delete'
       resources :hello, only:[:index]
-      post 'areas/register', to: 'areas#register'
+      post 'areas/create', to: 'areas#create'
       get 'areas/index', to: 'areas#index'
-      put 'areas/update/:id', to: 'areas#update'
-      delete 'areas/delete/:id', to: 'areas#delete'
+      put 'areas/update', to: 'areas#update'
+      delete 'areas/delete', to: 'areas#delete'
     end
   end
 end

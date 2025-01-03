@@ -1,7 +1,7 @@
 require 'swagger_helper'
 
 RSpec.describe 'Skills API', type: :request do
-  path '/api/v1/skills/register' do
+  path '/api/v1/skills/create' do
     post 'Creates a skill' do
       tags 'Skills'
       consumes 'application/json'
@@ -38,7 +38,7 @@ RSpec.describe 'Skills API', type: :request do
   end
 
   path '/api/v1/skills/search' do
-    post 'Searc a skill' do
+    post 'Search a skill' do
       tags 'Skills'
       consumes 'application/json'
       parameter name: :skill, in: :body, schema: {

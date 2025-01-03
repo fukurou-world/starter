@@ -1,4 +1,4 @@
-class Auth::SessionsController < ApplicationController
+class Auth::Dealer::SessionsController < ApplicationController
   def index
       if current_dealer
           render json: { is_login: true, data: current_dealer }

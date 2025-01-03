@@ -7,7 +7,7 @@ services:
       PGTZ: UTC
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD
     volumes:
-      - ./api/tmp/db:/var/lib/postgresql/data
+      - db_data:/var/lib/postgresql/data
     ports:
       - 5432:5432
 
@@ -45,3 +45,4 @@ services:
     command: sh -c "yarn && yarn dev"
 volumes:
   nuxt_node_modules:
+  db_data:

@@ -4,7 +4,7 @@ info:
   title: API V1
   version: v1
 paths:
-  "/api/v1/areas/register":
+  "/api/v1/areas/create":
     post:
       summary: Creates a area
       tags:
@@ -12,9 +12,37 @@ paths:
       parameters: []
       responses:
         '201':
-          description: area created
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  area:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: area_test
+                      created_at:
+                        type: string
+                        example: '2030-03-01 20:45:22'
+                      updated_at:
+                        type: string
+                        example: '2030-03-01 20:45:22'
         '422':
-          description: invalid request
+          description: Invalid Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Invalid Request
       requestBody:
         content:
           application/json:
@@ -23,6 +51,7 @@ paths:
               properties:
                 name:
                   type: string
+                  example: area_test
               required:
               - name
   "/api/v1/areas/index":
@@ -32,54 +61,115 @@ paths:
       - Areas
       responses:
         '200':
-          description: areas found
+          description: OK
           content:
             application/json:
               schema:
-                type: array
-                items: {}
-  "/api/v1/areas/update/{id}":
+                type: object
+                properties:
+                  areas:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: area_test
+                        created_at:
+                          type: string
+                          example: '2030-03-01 20:45:22'
+                        updated_at:
+                          type: string
+                          example: '2030-03-01 20:45:22'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not Found
+  "/api/v1/areas/update":
     put:
       summary: Updates a area
       tags:
       - Areas
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
+      parameters: []
       responses:
         '200':
-          description: area updated
+          description: Updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: Updated Name
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request
         '404':
-          description: area not found
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not Found
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
+                id:
+                  type: integer
+                  example: 1
                 name:
                   type: string
+                  example: Updated Name
               required:
+              - id
               - name
-  "/api/v1/areas/delete/{id}":
+  "/api/v1/areas/delete":
     delete:
       summary: Deletes a area
       tags:
       - Areas
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
+      parameters: []
       responses:
         '204':
-          description: area deleted
+          description: Deleted
         '404':
-          description: area not found
+          description: Not Found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+              required:
+              - id
   "/auth":
     post:
       summary: Creates a dealer
@@ -160,123 +250,7 @@ paths:
               schema:
                 type: array
                 items: {}
-  "/api/v1/dealers/{id}":
-    get:
-      summary: Retrieves single dealer
-      tags:
-      - Dealers
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: dealers found
-          content:
-            application/json:
-              schema:
-                type: array
-                items: {}
-  "/api/v1/dealers/search":
-    post:
-      summary: Searc a dealer
-      tags:
-      - Dealers
-      parameters: []
-      responses:
-        '201':
-          description: dealer found
-        '422':
-          description: invalid request
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                work in progress:
-                  type: string
-              required:
-              - name
-  "/api/v1/dealers/update":
-    put:
-      summary: Updates a dealer
-      tags:
-      - Dealers
-      responses:
-        '200':
-          description: dealer updated
-        '404':
-          description: dealer not found
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                id:
-                  type: string
-                  example: '123'
-                avatar:
-                  type: string
-                  example: 'https://s3.somewhere.com/hgioad'
-                name:
-                  type: string
-                  example: '卓山投矢'
-                gender:
-                  type: string
-                  example: '01'
-                # email:
-                #   type: string
-                  # example: '123'
-                # encrypted_password:
-                #   type: string
-                  # example: '123'
-                tel:
-                  type: string
-                  example: '03011223344'
-                dealer_name:
-                  type: string
-                  example: 'To-ya'
-                url_x:
-                  type: string
-                  example: 'https://x.com/to-ya-ya-!'
-                years_of_experience:
-                  type: number
-                  example: 5
-                fee_min:
-                  type: number
-                  example: 1200
-                fee_max:
-                  type: number
-                  example: 2200
-                payment_account:
-                  type: string
-                  example: 'みずほ銀行山岡支店（普通）012340123 タクヤマトウヤ'
-                notices:
-                  type: string
-                  example: 'お酒のアレルギーがあります。'
-              required:
-              - dealer_name
-  "/api/v1/dealers/delete/{id}":
-    delete:
-      summary: Deletes a dealer
-      tags:
-      - Dealers
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '204':
-          description: dealer deleted
-        '404':
-          description: dealer not found
-  "/api/v1/skills/register":
+  "/api/v1/skills/create":
     post:
       summary: Creates a skill
       tags:
@@ -312,7 +286,7 @@ paths:
                 items: {}
   "/api/v1/skills/search":
     post:
-      summary: Searc a skill
+      summary: Search a skill
       tags:
       - Skills
       parameters: []
@@ -375,6 +349,3 @@ paths:
           description: skill not found
 servers:
 - url: http://localhost:3000
-  description: '開発環境'
-- url: https://coconuts-poker-87d283940a6e.herokuapp.com
-  description: '検証環境'

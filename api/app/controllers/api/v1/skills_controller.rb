@@ -1,5 +1,5 @@
 class Api::V1::SkillsController < ApplicationController
-  def register
+  def create
     skill = Skill.new(skill_params)
     if skill.save
       render json: { skill: skill }, status: 201
@@ -63,6 +63,6 @@ class Api::V1::SkillsController < ApplicationController
 
   private
   def skill_params
-    params.require(:skill).permit(:name)
+    params.permit(:name)
   end
 end

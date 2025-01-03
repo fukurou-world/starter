@@ -1,4 +1,4 @@
-FROM ruby:3.0.5-alpine
+FROM ruby:3.3.5-alpine
 
 ARG WORKDIR
 
@@ -16,7 +16,7 @@ WORKDIR ${HOME}
 COPY Gemfile* ./
 
 # gemバージョン指定
-RUN gem update --system 3.3.22
+RUN gem update --system 3.5.18
 
 # nokogiriのネイティブ拡張機能をインストール
 RUN bundle config set force_ruby_platform true

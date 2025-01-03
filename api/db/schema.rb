@@ -10,22 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_06_13_064356) do
-
+ActiveRecord::Schema[8.0].define(version: 2025_01_02_154356) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension "pg_catalog.plpgsql"
 
   create_table "areas", force: :cascade do |t|
     t.string "name", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "askings", force: :cascade do |t|
+    t.bigint "client_id", null: false
+    t.json "history"
+    t.datetime "sentAt", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_askings_on_client_id"
   end
 
   create_table "client_areas", force: :cascade do |t|
     t.bigint "client_id", null: false
     t.bigint "area_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["area_id"], name: "index_client_areas_on_area_id"
     t.index ["client_id"], name: "index_client_areas_on_client_id"
   end
@@ -33,28 +41,20 @@ ActiveRecord::Schema.define(version: 2024_06_13_064356) do
   create_table "client_skills", force: :cascade do |t|
     t.bigint "client_id", null: false
     t.bigint "skill_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_client_skills_on_client_id"
     t.index ["skill_id"], name: "index_client_skills_on_skill_id"
   end
 
   create_table "clients", force: :cascade do |t|
-    t.string "provider", default: "email", null: false
-    t.string "uid", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.boolean "allow_password_change", default: false
-    t.datetime "remember_created_at"
-    t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string "unconfirmed_email"
+    t.string "nickname"
+    t.string "image"
     t.string "avatar"
     t.string "name"
     t.boolean "is_corporation", default: true
     t.string "email"
+    t.string "encrypted_password"
     t.string "tel"
     t.string "client_name"
     t.string "url_x"
@@ -65,23 +65,20 @@ ActiveRecord::Schema.define(version: 2024_06_13_064356) do
     t.integer "pay_max"
     t.boolean "is_uniform"
     t.string "notices"
-    t.json "tokens"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["area_id"], name: "index_clients_on_area_id"
     t.index ["client_name"], name: "index_clients_on_client_name", unique: true
-    t.index ["confirmation_token"], name: "index_clients_on_confirmation_token", unique: true
     t.index ["email"], name: "index_clients_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_clients_on_reset_password_token", unique: true
     t.index ["tel"], name: "index_clients_on_tel", unique: true
-    t.index ["uid", "provider"], name: "index_clients_on_uid_and_provider", unique: true
   end
 
   create_table "dealer_areas", force: :cascade do |t|
     t.bigint "dealer_id", null: false
     t.bigint "area_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["area_id"], name: "index_dealer_areas_on_area_id"
     t.index ["dealer_id"], name: "index_dealer_areas_on_dealer_id"
   end
@@ -89,28 +86,18 @@ ActiveRecord::Schema.define(version: 2024_06_13_064356) do
   create_table "dealer_skills", force: :cascade do |t|
     t.bigint "dealer_id", null: false
     t.bigint "skill_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["dealer_id"], name: "index_dealer_skills_on_dealer_id"
     t.index ["skill_id"], name: "index_dealer_skills_on_skill_id"
   end
 
   create_table "dealers", force: :cascade do |t|
-    t.string "provider", default: "email", null: false
-    t.string "uid", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.boolean "allow_password_change", default: false
-    t.datetime "remember_created_at"
-    t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string "unconfirmed_email"
     t.string "avatar"
     t.string "name"
     t.string "gender"
     t.string "email"
+    t.string "encrypted_password"
     t.string "tel"
     t.string "dealer_name"
     t.string "url_x"
@@ -119,15 +106,12 @@ ActiveRecord::Schema.define(version: 2024_06_13_064356) do
     t.integer "fee_max"
     t.string "payment_account"
     t.string "notices"
-    t.json "tokens"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["confirmation_token"], name: "index_dealers_on_confirmation_token", unique: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["dealer_name"], name: "index_dealers_on_dealer_name", unique: true
     t.index ["email"], name: "index_dealers_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_dealers_on_reset_password_token", unique: true
     t.index ["tel"], name: "index_dealers_on_tel", unique: true
-    t.index ["uid", "provider"], name: "index_dealers_on_uid_and_provider", unique: true
   end
 
   create_table "evaluation_clients", force: :cascade do |t|
@@ -135,8 +119,8 @@ ActiveRecord::Schema.define(version: 2024_06_13_064356) do
     t.bigint "client_id"
     t.string "content"
     t.integer "rate"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_evaluation_clients_on_client_id"
     t.index ["dealer_id"], name: "index_evaluation_clients_on_dealer_id"
   end
@@ -146,17 +130,17 @@ ActiveRecord::Schema.define(version: 2024_06_13_064356) do
     t.bigint "client_id"
     t.string "content"
     t.integer "rate"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_evaluation_dealers_on_client_id"
     t.index ["dealer_id"], name: "index_evaluation_dealers_on_dealer_id"
   end
 
   create_table "recruits", force: :cascade do |t|
     t.string "title", null: false
-    t.datetime "deadline"
-    t.datetime "startAt"
-    t.datetime "endAt"
+    t.datetime "deadline", precision: nil
+    t.datetime "startAt", precision: nil
+    t.datetime "endAt", precision: nil
     t.bigint "client_id"
     t.bigint "area_id"
     t.integer "fee_min"
@@ -167,18 +151,19 @@ ActiveRecord::Schema.define(version: 2024_06_13_064356) do
     t.string "notices_uniform"
     t.string "job_description"
     t.string "notices"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["area_id"], name: "index_recruits_on_area_id"
     t.index ["client_id"], name: "index_recruits_on_client_id"
   end
 
   create_table "skills", force: :cascade do |t|
     t.string "name", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "askings", "clients"
   add_foreign_key "client_areas", "areas"
   add_foreign_key "client_areas", "clients"
   add_foreign_key "client_skills", "clients"
@@ -190,6 +175,8 @@ ActiveRecord::Schema.define(version: 2024_06_13_064356) do
   add_foreign_key "dealer_skills", "skills"
   add_foreign_key "evaluation_clients", "clients"
   add_foreign_key "evaluation_clients", "dealers"
+  add_foreign_key "evaluation_dealers", "clients"
+  add_foreign_key "evaluation_dealers", "dealers"
   add_foreign_key "recruits", "areas"
   add_foreign_key "recruits", "clients"
 end
