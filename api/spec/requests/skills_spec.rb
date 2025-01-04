@@ -3,7 +3,7 @@ require 'swagger_helper'
 RSpec.describe 'Skills API', type: :request do
   path '/api/v1/skills/create' do
     post 'Creates a skill' do
-      tags 'Skills'
+      tags 'Skills_未完成'
       consumes 'application/json'
       parameter name: :skill, in: :body, schema: {
         type: :object,
@@ -27,7 +27,7 @@ RSpec.describe 'Skills API', type: :request do
 
   path '/api/v1/skills/index' do
     get 'Retrieves all skills' do
-      tags 'Skills'
+      tags 'Skills_未完成'
       produces 'application/json'
 
       response '200', 'skills found' do
@@ -39,7 +39,7 @@ RSpec.describe 'Skills API', type: :request do
 
   path '/api/v1/skills/search' do
     post 'Search a skill' do
-      tags 'Skills'
+      tags 'Skills_未完成'
       consumes 'application/json'
       parameter name: :skill, in: :body, schema: {
         type: :object,
@@ -63,7 +63,7 @@ RSpec.describe 'Skills API', type: :request do
 
   path '/api/v1/skills/update/{id}' do
     put 'Updates a skill' do
-      tags 'Skills'
+      tags 'Skills_未完成'
       consumes 'application/json'
       parameter name: :id, in: :path, type: :string
       parameter name: :skill, in: :body, schema: {
@@ -90,7 +90,7 @@ RSpec.describe 'Skills API', type: :request do
 
   path '/api/v1/skills/delete/{id}' do
     delete 'Deletes a skill' do
-      tags 'Skills'
+      tags 'Skills_未完成'
       parameter name: :id, in: :path, type: :string
 
       response '204', 'skill deleted' do

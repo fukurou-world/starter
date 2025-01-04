@@ -129,8 +129,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_03_094540) do
     t.string "notices"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "deleted_at"
     t.date "date_of_becoming"
+    t.datetime "deleted_at"
     t.index ["dealer_name"], name: "index_dealers_on_dealer_name", unique: true
     t.index ["email"], name: "index_dealers_on_email", unique: true
     t.index ["tel"], name: "index_dealers_on_tel", unique: true

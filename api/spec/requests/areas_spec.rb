@@ -60,7 +60,16 @@ RSpec.describe 'Areas API', type: :request do
               updated_at: { type: :string, example: '2030-03-01 20:45:22' }
             }
           }
-          run_test!
+          run_test! do |response|
+            data = JSON.parse(response.body)
+            data.each do |area|
+              expect(area.keys).to contain_exactly('id', 'name', 'created_at', 'updated_at')
+              expect(area['id']).to be_present
+              expect(area['name']).to be_present
+              expect(area['created_at']).to be_present
+              expect(area['updated_at']).to be_present
+            end
+          end
         end
       end
 

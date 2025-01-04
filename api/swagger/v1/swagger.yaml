@@ -164,91 +164,186 @@ paths:
                   type: integer
               required:
               - id
-  "/auth":
-    post:
-      summary: Creates a dealer
-      tags:
-      - Dealers
-      parameters: []
-      responses:
-        '200':
-          description: dealers
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                  example: someone@gmailx.com
-                password:
-                  type: string
-                  example: testpass
-                password_confirmation:
-                  type: string
-                  example: testpass
-                confirm_success_url:
-                  type: string
-                  example: https://www.google.co.jp/
-  "/auth/sign_in":
-    post:
-      summary: Sign in as a dealer
-      tags:
-      - Dealers
-      parameters: []
-      responses:
-        '200':
-          description: dealers
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                  example: someone@gmailx.com
-                password:
-                  type: string
-                  example: testpass
-  "/auth/sign_out":
-    delete:
-      summary: Sign out as a dealer
-      tags:
-      - Dealers
-      parameters: []
-      responses:
-        '200':
-          description: dealers
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-              required:
-              - name
-  "/api/v1/dealers/index":
+  "/api/v1/dealers/{id}":
     get:
-      summary: Retrieves all dealers
+      summary: Fetch single dealer
       tags:
       - Dealers
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
       responses:
         '200':
-          description: dealers found
+          description: dealer found
           content:
             application/json:
               schema:
-                type: array
-                items: {}
+                type: object
+                properties:
+                  id:
+                    type: number
+                    example: 1
+                  avatar:
+                    type: string
+                    example: "/img/sample"
+                  name:
+                    type: string
+                    example: ディーラー太郎
+                  gender:
+                    type: string
+                    example: male
+                  email:
+                    type: string
+                    example: mail@dummy.co.xx
+                  encrypted_password:
+                    type: string
+                    example: password
+                  tel:
+                    type: string
+                    example: '01022004400'
+                  dealer_name:
+                    type: string
+                    example: D-TRO
+                  url_x:
+                    type: string
+                    example: dtaroxx1111
+                  date_of_becoming:
+                    type: date
+                    example: '2022-10-02'
+                  fee_min:
+                    type: number
+                    example: 1400
+                  fee_max:
+                    type: number
+                    example: 3000
+                  payment_account:
+                    type: string
+                    example: UFJ
+                  notices:
+                    type: string
+                    example: 特記事項
+                  deleted_at:
+                    type: datetime
+                    example: '2025-02-03'
+                  areas:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: number
+                          example: 1
+                        name:
+                          type: string
+                          example: area_test
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not Found
+  "/api/v1/dealers/delete":
+    post:
+      summary: Deletes a dealer
+      tags:
+      - Dealers
+      parameters: []
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                    example: 1
+                  avatar:
+                    type: string
+                    example: "/img/sample"
+                  name:
+                    type: string
+                    example: ディーラー太郎
+                  gender:
+                    type: string
+                    example: male
+                  email:
+                    type: string
+                    example: mail@dummy.co.xx
+                  encrypted_password:
+                    type: string
+                    example: password
+                  tel:
+                    type: string
+                    example: '01022004400'
+                  dealer_name:
+                    type: string
+                    example: D-TRO
+                  url_x:
+                    type: string
+                    example: dtaroxx1111
+                  date_of_becoming:
+                    type: date
+                    example: '2022-10-02'
+                  fee_min:
+                    type: number
+                    example: 1400
+                  fee_max:
+                    type: number
+                    example: 3000
+                  payment_account:
+                    type: string
+                    example: UFJ
+                  notices:
+                    type: string
+                    example: 特記事項
+                  deleted_at:
+                    type: datetime
+                    example: '2025-02-03 21:33:40'
+                  areas:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: number
+                          example: 1
+                        name:
+                          type: string
+                          example: area_test
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not Found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+              required:
+              - id
   "/api/v1/skills/create":
     post:
       summary: Creates a skill
       tags:
-      - Skills
+      - Skills_未完成
       parameters: []
       responses:
         '201':
@@ -269,7 +364,7 @@ paths:
     get:
       summary: Retrieves all skills
       tags:
-      - Skills
+      - Skills_未完成
       responses:
         '200':
           description: skills found
@@ -282,7 +377,7 @@ paths:
     post:
       summary: Search a skill
       tags:
-      - Skills
+      - Skills_未完成
       parameters: []
       responses:
         '201':
@@ -303,7 +398,7 @@ paths:
     put:
       summary: Updates a skill
       tags:
-      - Skills
+      - Skills_未完成
       parameters:
       - name: id
         in: path
@@ -329,7 +424,7 @@ paths:
     delete:
       summary: Deletes a skill
       tags:
-      - Skills
+      - Skills_未完成
       parameters:
       - name: id
         in: path

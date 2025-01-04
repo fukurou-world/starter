@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       post 'dealers/search', to: 'dealers#search'
       get 'dealers/:id', to: 'dealers#detail'
       put 'dealers/update', to: 'dealers#update'
-      delete 'dealers/delete', to: 'dealers#delete'
+      post 'dealers/delete', to: 'dealers#delete'
       post 'skills/create', to: 'skills#create'
       get 'skills/index', to: 'skills#index'
       post 'skills/search', to: 'skills#search'

@@ -4,21 +4,23 @@ class Api::V1::DealersController < ApplicationController
   end
 
   def detail
-    dealer = Dealer.find_by(id: params[:id])
-    if dealer.nil?
-      render status: 404
+    id = params[:id]
+    @dealer = Dealer.find(id)
+    if @dealer.nil?
+      render json: { error: 'Not Found' }, status: :not_found
     else
-      render json: { dealer: dealer }, status: 200
+      render :detail, format: 'json', handler: 'jbuilder', status: :ok
     end
   end
 
   def update
-    dealer = Dealer.find_by(id: params[:id])
+    id = params[:id]
+    dealer = Dealer.find(id)
     if dealer.nil?
-      render status: 404
+      render status: :not_found
     else
       if dealer.update(dealer_params)
-        render json: { dealer: dealer }, status: 200
+        render json: { dealer: dealer }, status: :ok
       else
         render status: 400
       end
@@ -26,17 +28,29 @@ class Api::V1::DealersController < ApplicationController
   end
 
   def delete
-    dealer = Dealer.find_by(id: params[:id])
+    id = params[:id]
+    dealer = Dealer.find(id)
     if dealer.nil?
-      render status: 404
+      render json: { error: 'Not Found' }, status: :not_found
     else
-      if dealer.destroy
-        render status: 204
+      if dealer.update(deleted_at: Time.now)
+        render json: dealer, status: :ok
       else
-        render status: 400
+        render json: { error: 'Bad Request' }, status: :bad_request
       end
     end
   end
+
+  def completely_delete
+    id = params[:id]
+    dealer = Dealer.find(id)
+    if dealer.destroy
+      render status: :no_content
+    else
+    render json: { error: 'Bad Request' }, status: :bad_request
+    end
+  end
+
 
   private
   def dealer_params
