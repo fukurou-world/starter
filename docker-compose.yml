@@ -28,7 +28,7 @@ services:
       - "$API_PORT:$CONTAINER_PORT"
 
   spa:
-    container_name: container-spa
+    container_name: container-spa-before
     build:
       context: ./spa
     volumes:
