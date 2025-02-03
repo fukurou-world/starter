@@ -5,7 +5,7 @@ import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import colors from 'vuetify/util/colors'
 
-export default defineNuxtPlugin((app) => {
+export default defineNuxtPlugin(app => {
   const vuetify = createVuetify({
     theme: {
       themes: {
@@ -17,9 +17,9 @@ export default defineNuxtPlugin((app) => {
             dealerColor: '#0029BB',
             clientColor: '#01A830'
           }
-        },
-      },
-    },
+        }
+      }
+    }
   })
   app.vueApp.use(vuetify)
 })

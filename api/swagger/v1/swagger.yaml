@@ -164,6 +164,70 @@ paths:
                   type: integer
               required:
               - id
+  "/api/v1/askings/{client_id}":
+    parameters:
+    - name: client_id
+      in: path
+      description: Client ID
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: Retrieves all askings of a client
+      tags:
+      - Askings
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: number
+                      example: 1
+                    client_id:
+                      type: number
+                      example: 332
+                    history:
+                      type: json
+                      example: "{ sample_key: 'sample_value'}"
+                    sent_at:
+                      type: datetime
+                      example: '2028-06-13T06:10:33.000Z'
+  "/api/v1/askings/send_mail":
+    post:
+      summary: Send a asking
+      tags:
+      - Askings
+      parameters: []
+      responses:
+        '200':
+          description: ok
+        '404':
+          description: Not Found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dealer_id:
+                  type: integer
+                  example: 19
+                client_id:
+                  type: integer
+                  example: 20
+                contents:
+                  type: json
+                  example: "{ title: 'sample_title', body: 'sample_body' }"
+              required:
+              - dealer_id
+              - client_id
+              - contents
   "/api/v1/dealers/{id}":
     get:
       summary: Fetch single dealer

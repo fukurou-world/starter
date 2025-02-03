@@ -14,7 +14,7 @@
 - windowsの場合
   - macと同様、Dockerソフトが必要（Docker Desktopは有料化された？）要調査
 
-## Heroku
+## [廃止]Heroku
 - heroku CLIをPCにインストール
 - APIキーを調べセットしたり、heroku loginして操作
 ```
@@ -64,7 +64,13 @@ coconuts-poker::DATABASE=> \q
   - ログイン周りの実装
 
 ## swagger
-- swagger.yml を直接編集してドキュメントとします
-- 【廃止】swagger生成コマンド（Railsのdockerコンテナ内で実行する）
+- swagger生成コマンド（Railsのdockerコンテナ内で実行する）
   - `RAILS_ENV=test rake rswag:specs:swaggerize`
+ 
+## mailhog
+- メール送信機能のテスト結果はmailhogで確認する
+  - [http://localhost:8025/](http://localhost:8025/)
+  - docker-compose.ymlに記載あり
+  
+
 

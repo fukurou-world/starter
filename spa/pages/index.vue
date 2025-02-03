@@ -6,13 +6,13 @@ definePageMeta({
 let hoge = ref(1)
 let msgs = ref(['a', 'b'])
 
-async function getMsg () {
-const res = await useApiFetch($fetch, '/api/v1/skills/index')
-console.log('%c res :', 'background-color:lightgreen', res)
-msgs.value = res.skills
+async function getMsg() {
+  const res = await useApiFetch($fetch, '/api/v1/skills/index')
+  console.log('%c res :', 'background-color:lightgreen', res)
+  msgs.value = res.skills
   console.log('%c msgs.value.length :', 'background-color:lightgreen', msgs.value.length)
   hoge.value++
-  }
+}
 </script>
 
 <template lang="pug">

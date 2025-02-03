@@ -22,6 +22,8 @@ Rails.application.routes.draw do
       get 'areas/index', to: 'areas#index'
       put 'areas/update', to: 'areas#update'
       delete 'areas/delete', to: 'areas#delete'
+      get "askings/:client_id", to: 'askings#index'
+      post "askings/send_mail", to: 'askings#send_mail'
     end
   end
 end

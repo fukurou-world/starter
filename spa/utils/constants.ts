@@ -2,5 +2,5 @@
 export const USER_TYPE = {
   ADMIN: 'admin',
   CLIENT: 'client',
-  DEALER: 'dealer',
+  DEALER: 'dealer'
 } as const

@@ -1,7 +1,7 @@
 services:
   db:
     container_name: container-db
-    image: postgres:12.3-alpine
+    image: postgres:17.2-alpine
     environment:
       TZ: UTC
       PGTZ: UTC
@@ -43,6 +43,15 @@ services:
       - port=8080
       - CHOKIDAR_USEPOLLING=true
     command: sh -c "yarn && yarn dev"
+
+  mailhog:
+    image: mailhog/mailhog:v1.0.0
+    ports:
+      - "8025:8025"
+    volumes:
+      - maildir:/tmp
+
 volumes:
   nuxt_node_modules:
   db_data:
+  maildir:
